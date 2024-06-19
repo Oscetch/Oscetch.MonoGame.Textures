@@ -47,7 +47,7 @@ namespace Oscetch.MonoGame.Textures
                 ShapeType.Cross => new CrossShape(parameters.Size, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness),
                 ShapeType.RectangleWithCross => new RectangleWithCrossShape(parameters.Size, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness),
                 ShapeType.X => new XShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
-                ShapeType.RectangleCornerRadius => new RoundedCornerRectangle(parameters.Size, parameters.CornerRadius, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness),
+                ShapeType.RectangleCornerRadius => new RoundedCornerRectangle(parameters.Size, parameters.CornerRadius, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
                 _ => new RectangleShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
             };
         }
