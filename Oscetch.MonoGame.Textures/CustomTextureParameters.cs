@@ -11,6 +11,7 @@ namespace Oscetch.MonoGame.Textures
         public Color FillColor { get; }
         public bool IsBordered { get; }
         public int BorderThickness { get; }
+        public int CornerRadius { get; }
 
         private CustomTextureParameters(CustomTextureParametersBuilder builder)
         {
@@ -20,6 +21,7 @@ namespace Oscetch.MonoGame.Textures
             FillColor = builder.FillColor;
             BorderThickness = builder.BorderThickness;
             ShapeType = builder.ShapeType;
+            CornerRadius = builder.CornerRadius;
         }
 
         public override bool Equals(object obj)
@@ -30,19 +32,13 @@ namespace Oscetch.MonoGame.Textures
                    BorderColor.Equals(parameters.BorderColor) &&
                    FillColor.Equals(parameters.FillColor) &&
                    IsBordered == parameters.IsBordered &&
-                   BorderThickness == parameters.BorderThickness;
+                   BorderThickness == parameters.BorderThickness &&
+                   CornerRadius == parameters.CornerRadius;
         }
 
         public override int GetHashCode()
         {
-            int hashCode = 463341532;
-            hashCode = hashCode * -1521134295 + ShapeType.GetHashCode();
-            hashCode = hashCode * -1521134295 + Size.GetHashCode();
-            hashCode = hashCode * -1521134295 + BorderColor.GetHashCode();
-            hashCode = hashCode * -1521134295 + FillColor.GetHashCode();
-            hashCode = hashCode * -1521134295 + IsBordered.GetHashCode();
-            hashCode = hashCode * -1521134295 + BorderThickness.GetHashCode();
-            return hashCode;
+            return System.HashCode.Combine(ShapeType, Size, BorderColor, FillColor, IsBordered, BorderThickness, CornerRadius);
         }
 
         public class CustomTextureParametersBuilder
@@ -53,6 +49,7 @@ namespace Oscetch.MonoGame.Textures
             public Color FillColor { get; private set; }
             public bool IsBordered { get; private set; } = false;
             public int BorderThickness { get; private set; } = 1;
+            public int CornerRadius { get; private set;} = 0;
 
             public CustomTextureParametersBuilder WithSize(Point size)
             {
@@ -126,6 +123,12 @@ namespace Oscetch.MonoGame.Textures
             public CustomTextureParametersBuilder WithFillColor(Color fillColor)
             {
                 FillColor = fillColor;
+                return this;
+            }
+
+            public CustomTextureParametersBuilder WithCornerRadius(int cornerRadius)
+            {
+                CornerRadius = cornerRadius;
                 return this;
             }
 

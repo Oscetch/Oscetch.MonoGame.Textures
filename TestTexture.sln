@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTexture", "TestTexture\TestTexture.csproj", "{D7FB26DF-62C6-4977-97AF-544A31F42657}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oscetch.MonoGame.Textures.GL", "Oscetch.MonoGame.Textures\Oscetch.MonoGame.Textures.GL.csproj", "{FDFCC918-C5E1-4DEE-AF55-6505152DF87F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7FB26DF-62C6-4977-97AF-544A31F42657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7FB26DF-62C6-4977-97AF-544A31F42657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7FB26DF-62C6-4977-97AF-544A31F42657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7FB26DF-62C6-4977-97AF-544A31F42657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDFCC918-C5E1-4DEE-AF55-6505152DF87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDFCC918-C5E1-4DEE-AF55-6505152DF87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDFCC918-C5E1-4DEE-AF55-6505152DF87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFCC918-C5E1-4DEE-AF55-6505152DF87F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2E968C4-A1C4-4F41-B494-23F1380EA129}
+	EndGlobalSection
+EndGlobal

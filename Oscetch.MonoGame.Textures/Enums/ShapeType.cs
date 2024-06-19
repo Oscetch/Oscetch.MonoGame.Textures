@@ -7,5 +7,6 @@
         Rectangle,
         RectangleWithCross,
         X,
+        RectangleCornerRadius,
     }
 }

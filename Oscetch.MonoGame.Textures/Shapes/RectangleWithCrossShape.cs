@@ -22,7 +22,7 @@ namespace Oscetch.MonoGame.Textures.Shapes
             _xRange = (_center.X - crossRange, _center.X + crossRange);
             _yRange = (_center.Y - crossRange, _center.Y + crossRange);
         }
-        private bool IsInRange(int coordinate, (double min, double max) range)
+        private static bool IsInRange(int coordinate, (double min, double max) range)
         {
             return coordinate >= range.min && coordinate <= range.max;
         }

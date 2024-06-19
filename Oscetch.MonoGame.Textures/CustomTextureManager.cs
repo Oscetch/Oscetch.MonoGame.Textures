@@ -8,7 +8,7 @@ namespace Oscetch.MonoGame.Textures
     public static class CustomTextureManager
     {
         private readonly static Dictionary<CustomTextureParameters, CustomTexture> _textureCache
-            = new Dictionary<CustomTextureParameters, CustomTexture>();
+            = new();
 
         public static CustomTexture GetCustomTexture(CustomTextureParameters parameters, GraphicsDevice graphicsDevice)
         {
@@ -41,20 +41,15 @@ namespace Oscetch.MonoGame.Textures
 
         private static Shape GetShape(CustomTextureParameters parameters)
         {
-            switch (parameters.ShapeType)
+            return parameters.ShapeType switch
             {
-                case ShapeType.Circle:
-                    return new CircleShape(parameters.Size, parameters.FillColor, parameters.BorderColor);
-                case ShapeType.Cross:
-                    return new CrossShape(parameters.Size, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness);
-                case ShapeType.RectangleWithCross:
-                    return new RectangleWithCrossShape(parameters.Size, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness);
-                case ShapeType.X:
-                    return new XShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness);
-                default:
-                case ShapeType.Rectangle:
-                    return new RectangleShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness);
-            }
+                ShapeType.Circle => new EllipseShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
+                ShapeType.Cross => new CrossShape(parameters.Size, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness),
+                ShapeType.RectangleWithCross => new RectangleWithCrossShape(parameters.Size, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness),
+                ShapeType.X => new XShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
+                ShapeType.RectangleCornerRadius => new RoundedCornerRectangle(parameters.Size, parameters.CornerRadius, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness),
+                _ => new RectangleShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
+            };
         }
     }
 }

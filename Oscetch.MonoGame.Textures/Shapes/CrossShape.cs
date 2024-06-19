@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oscetch.MonoGame.Textures.Shapes
 {
@@ -28,7 +24,7 @@ namespace Oscetch.MonoGame.Textures.Shapes
             CrossThickness = crossThickness;
         }
 
-        private bool IsInRange(int coordinate, (double min, double max) range)
+        private static bool IsInRange(int coordinate, (double min, double max) range)
         {
             return coordinate >= range.min && coordinate <= range.max;
         }
