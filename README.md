@@ -13,6 +13,7 @@ The library can generate these shapes:
 - Rectangle with a cross in the middle
 - X shape
 - Triangle
+- Dialog box, which is just a rounded corner rectangle, without any radius on the bottom left
 
 To generate a texture you create a builder, set the parameters and build:
 

@@ -34,6 +34,11 @@ namespace TestTexture
             var fillColor = Color.White;
             var borderColor = Color.Violet;
 
+            var smallDialogBoxParams = new CustomTextureParametersBuilder().WithSize(50).WithBorderThickness(5).WithFillColor(fillColor).WithBorderColor(borderColor).WithCornerRadius(10).WithShape(ShapeType.DialogBox).Build();
+            var largeDialogBoxParams = new CustomTextureParametersBuilder().WithSize(300).WithBorderThickness(10).WithFillColor(fillColor).WithBorderColor(borderColor).WithCornerRadius(20).WithShape(ShapeType.DialogBox).Build();
+
+            _testGroups.Add((CustomTextureManager.GetCustomTexture(smallDialogBoxParams, GraphicsDevice), CustomTextureManager.GetCustomTexture(largeDialogBoxParams, GraphicsDevice)));
+
             var smallTriangleParams = new CustomTextureParametersBuilder().WithSize(50).WithBorderThickness(5).WithFillColor(fillColor).WithBorderColor(borderColor).WithShape(ShapeType.Triangle).Build();
             var largeTriangleParams = new CustomTextureParametersBuilder().WithSize(300).WithBorderThickness(10).WithFillColor(fillColor).WithBorderColor(borderColor).WithShape(ShapeType.Triangle).Build();
 

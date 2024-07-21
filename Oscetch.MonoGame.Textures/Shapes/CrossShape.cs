@@ -8,6 +8,8 @@ namespace Oscetch.MonoGame.Textures.Shapes
         private readonly (double min, double max) _xRange;
         private readonly (double min, double max) _yRange;
 
+        private readonly Rectangle _innerRectangle;
+
         public int CrossThickness { get; }
 
         public CrossShape(Point size, Color crossColor, Color fillColor = default, int crossThickness = 1)
@@ -21,6 +23,8 @@ namespace Oscetch.MonoGame.Textures.Shapes
             BorderColor = crossColor;
             FillColor = fillColor;
             CrossThickness = crossThickness;
+
+            _innerRectangle = new Rectangle(crossThickness, crossThickness, size.X - crossThickness - crossThickness, size.Y - crossThickness - crossThickness);
         }
 
         private static bool IsInRange(int coordinate, (double min, double max) range)
@@ -30,11 +34,10 @@ namespace Oscetch.MonoGame.Textures.Shapes
 
         public override Color Bordered(int index)
         {
-            var yValue = ((int)System.Math.Floor((double)index / Size.X));
-            var xValue = (index % Size.X);
+            var yValue = (int)System.Math.Floor((double)index / Size.X);
+            var xValue = index % Size.X;
 
-            if (IsInRange(xValue, _xRange) || IsInRange(yValue, _yRange)
-                || xValue == 0 || xValue == Size.X - 1 || yValue == 0 || yValue == Size.Y - 1)
+            if (IsInRange(xValue, _xRange) || IsInRange(yValue, _yRange) || !_innerRectangle.Contains(new Point(xValue, yValue)))
             {
                 return BorderColor;
             }

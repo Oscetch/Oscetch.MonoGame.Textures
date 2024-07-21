@@ -50,6 +50,7 @@ namespace Oscetch.MonoGame.Textures
                 ShapeType.X => new XShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
                 ShapeType.RectangleCornerRadius => new RoundedCornerRectangle(parameters.Size, parameters.CornerRadius, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
                 ShapeType.Triangle => new TriangleShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
+                ShapeType.DialogBox => new DialogBoxShape(parameters.Size, parameters.CornerRadius, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
                 _ => new RectangleShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
             };
         }

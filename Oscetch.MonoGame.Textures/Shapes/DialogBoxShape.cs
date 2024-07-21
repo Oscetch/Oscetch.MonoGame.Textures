@@ -1,21 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
+using Oscetch.MonoGame.Textures.Shapes;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Oscetch.MonoGame.Textures.Shapes
+namespace Oscetch.MonoGame.Textures.GL.Shapes
 {
-    internal class RoundedCornerRectangle : Shape
+    internal class DialogBoxShape : Shape
     {
         public int BorderWidth { get; }
         public int CornerRadius { get; }
+
 
         private readonly List<Rectangle> _outerRectangles;
         private readonly List<Rectangle> _innerRectangles;
         private readonly List<Vector2> _outerCircleCenters;
         private readonly int _innerRadius;
 
-        public RoundedCornerRectangle(Point size, int cornerRadius = 10, Color fillColor = default, Color borderColor = default, int borderWidth = 1)
+        public DialogBoxShape(Point size, int cornerRadius = 10, Color fillColor = default, Color borderColor = default, int borderWidth = 1)
         {
             Size = size;
             BorderColor = borderColor;
@@ -26,16 +27,17 @@ namespace Oscetch.MonoGame.Textures.Shapes
             {
                 new (0, CornerRadius, Size.X, Size.Y - (CornerRadius * 2)), // horizontal
                 new (CornerRadius, 0, Size.X - (CornerRadius * 2), Size.Y), // vertical
+                new (0, Size.Y - CornerRadius, CornerRadius, CornerRadius), // small left over part
             };
             _innerRectangles = new List<Rectangle>
             {
                 new (CornerRadius, BorderWidth, Size.X - (CornerRadius + CornerRadius), Size.Y - BorderWidth - BorderWidth),
                 new (BorderWidth, CornerRadius, Size.X - BorderWidth - BorderWidth, Size.Y - CornerRadius - CornerRadius),
+                new (BorderWidth, Size.Y - BorderWidth - BorderWidth, BorderWidth, BorderWidth),
             };
             _outerCircleCenters = new List<Vector2>
             {
                 new (CornerRadius, CornerRadius), // top left
-                new (CornerRadius, Size.Y - CornerRadius), // bottom left
                 new (Size.X - CornerRadius, CornerRadius), // top right
                 new (Size.X - CornerRadius, Size.Y - CornerRadius) // bottom right
             };
