@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Oscetch.MonoGame.Textures.Enums;
+using Oscetch.MonoGame.Textures.GL.Shapes;
 using Oscetch.MonoGame.Textures.Shapes;
 using System.Collections.Generic;
 
@@ -48,6 +49,7 @@ namespace Oscetch.MonoGame.Textures
                 ShapeType.RectangleWithCross => new RectangleWithCrossShape(parameters.Size, parameters.BorderColor, parameters.FillColor, parameters.BorderThickness),
                 ShapeType.X => new XShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
                 ShapeType.RectangleCornerRadius => new RoundedCornerRectangle(parameters.Size, parameters.CornerRadius, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
+                ShapeType.Triangle => new TriangleShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
                 _ => new RectangleShape(parameters.Size, parameters.FillColor, parameters.BorderColor, parameters.BorderThickness),
             };
         }

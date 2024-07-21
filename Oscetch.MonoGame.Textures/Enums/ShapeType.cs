@@ -8,5 +8,6 @@
         RectangleWithCross,
         X,
         RectangleCornerRadius,
+        Triangle,
     }
 }

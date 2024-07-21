@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Oscetch.MonoGame.Textures.Shapes;
+using System;
 
 namespace Oscetch.MonoGame.Textures
 {
@@ -9,7 +10,7 @@ namespace Oscetch.MonoGame.Textures
         internal CustomTexture(GraphicsDevice graphicsDevice, Shape shape, bool isBordered = false)
                : base(graphicsDevice, shape.Size.X, shape.Size.Y)
         {
-            var pixelColorFunc = isBordered ? shape.FunctionBordered() : shape.FunctionFilled();
+            Func<int, Color> pixelColorFunc = isBordered ? shape.Bordered : shape.Filled;
             var pixelColors = new Color[shape.Size.X * shape.Size.Y];
 
             for (int i = 0; i < pixelColors.Length; i++)

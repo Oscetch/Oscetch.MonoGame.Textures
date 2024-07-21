@@ -27,48 +27,42 @@ namespace Oscetch.MonoGame.Textures.Shapes
             return coordinate >= range.min && coordinate <= range.max;
         }
 
-        public override Func<int, Color> FunctionBordered()
+        public override Color Bordered(int index)
         {
             if (BorderThickness == 0)
             {
-                return FunctionFilled();
+                return Filled(index);
             }
-            return x =>
-            {
-                var yValue = (int)System.Math.Floor((double)x / Size.X);
-                var xValue = x % Size.X;
+            var yValue = (int)System.Math.Floor((double)index / Size.X);
+            var xValue = index % Size.X;
 
-                if (xValue >= 0 && xValue <= BorderThickness || xValue <= Size.X && xValue >= Size.X - BorderThickness ||
-                    yValue >= 0 && yValue <= BorderThickness || yValue <= Size.Y && yValue >= Size.Y - BorderThickness ||
-                    IsInRange(xValue, _xRange) || IsInRange(yValue, _yRange) ||
-                    xValue == 0 || xValue == Size.X - 1 || yValue == 0 || yValue == Size.Y - 1)
-                {
-                    return BorderColor;
-                }
-                else
-                {
-                    return FillColor;
-                }
-            };
+            if (xValue >= 0 && xValue <= BorderThickness || xValue <= Size.X && xValue >= Size.X - BorderThickness ||
+                yValue >= 0 && yValue <= BorderThickness || yValue <= Size.Y && yValue >= Size.Y - BorderThickness ||
+                IsInRange(xValue, _xRange) || IsInRange(yValue, _yRange) ||
+                xValue == 0 || xValue == Size.X - 1 || yValue == 0 || yValue == Size.Y - 1)
+            {
+                return BorderColor;
+            }
+            else
+            {
+                return FillColor;
+            }
         }
 
-        public override Func<int, Color> FunctionFilled()
+        public override Color Filled(int index)
         {
-            return x =>
-            {
-                var yValue = (int)System.Math.Floor((double)x / Size.X);
-                var xValue = x % Size.X;
+            var yValue = (int)System.Math.Floor((double)index / Size.X);
+            var xValue = index % Size.X;
 
-                if (IsInRange(xValue, _xRange) || IsInRange(yValue, _yRange) ||
-                    xValue == 0 || xValue == Size.X - 1 || yValue == 0 || yValue == Size.Y - 1)
-                {
-                    return BorderColor;
-                }
-                else
-                {
-                    return FillColor;
-                }
-            };
+            if (IsInRange(xValue, _xRange) || IsInRange(yValue, _yRange) ||
+                xValue == 0 || xValue == Size.X - 1 || yValue == 0 || yValue == Size.Y - 1)
+            {
+                return BorderColor;
+            }
+            else
+            {
+                return FillColor;
+            }
         }
     }
 }

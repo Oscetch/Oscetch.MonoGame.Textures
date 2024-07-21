@@ -20,11 +20,11 @@ namespace Oscetch.MonoGame.Textures.Shapes
 
         }
 
-        public override Func<int, Color> FunctionBordered()
+        public override Color Bordered(int index)
         {
             if (BorderWidth == 0)
             {
-                return FunctionFilled();
+                return Filled(index);
             }
             var outerRectangles = new List<Rectangle>
             {
@@ -46,45 +46,43 @@ namespace Oscetch.MonoGame.Textures.Shapes
             var innerRadius = CornerRadius - BorderWidth;
 
             var rectangleSize = Size - new Point(CornerRadius);
-            return x =>
+
+            var yValue = (int)System.Math.Floor((double)index / Size.X);
+            var xValue = index % Size.X;
+            var p = new Point(xValue, yValue);
+            var v = p.ToVector2();
+
+            var overlapsRectangles = outerRectangles.Any(x => x.Contains(p));
+            var closest = outerCircleCenters.Min(x => Vector2.Distance(x, v));
+            var overlapsCircles = closest <= CornerRadius;
+
+            if (overlapsRectangles && overlapsCircles)
             {
-                var yValue = (int)System.Math.Floor((double)x / Size.X);
-                var xValue = x % Size.X;
-                var p = new Point(xValue, yValue);
-                var v = p.ToVector2();
-
-                var overlapsRectangles = outerRectangles.Any(x => x.Contains(p));
-                var closest = outerCircleCenters.Min(x => Vector2.Distance(x, v));
-                var overlapsCircles = closest <= CornerRadius;
-
-                if (overlapsRectangles && overlapsCircles)
+                if (closest <= innerRadius || innerRectangles.Any(x => x.Contains(p)))
                 {
-                    if (closest <= innerRadius || innerRectangles.Any(x => x.Contains(p)))
-                    {
-                        return FillColor;
-                    }
-                    return BorderColor;
+                    return FillColor;
                 }
+                return BorderColor;
+            }
 
-                if (overlapsRectangles)
+            if (overlapsRectangles)
+            {
+                if (innerRectangles.Any(x => x.Contains(p)))
                 {
-                    if (innerRectangles.Any(x => x.Contains(p)))
-                    {
-                        return FillColor;
-                    }
-                    return BorderColor;
+                    return FillColor;
                 }
+                return BorderColor;
+            }
 
-                if (closest <= CornerRadius)
-                {
-                    return closest <= innerRadius ? FillColor : BorderColor;
-                }
+            if (closest <= CornerRadius)
+            {
+                return closest <= innerRadius ? FillColor : BorderColor;
+            }
 
-                return Color.Transparent;
-            };
+            return Color.Transparent;
         }
 
-        public override Func<int, Color> FunctionFilled()
+        public override Color Filled(int index)
         {
             var outerRectangles = new List<Rectangle>
             {
@@ -99,25 +97,22 @@ namespace Oscetch.MonoGame.Textures.Shapes
                 new (Size.X - CornerRadius, Size.Y - CornerRadius) // bottom right
             };
 
-            return x =>
+            var yValue = (int)System.Math.Floor((double)index / Size.X);
+            var xValue = index % Size.X;
+
+            var p = new Point(xValue, yValue);
+            if (outerRectangles.Any(x => x.Contains(p)))
             {
-                var yValue = (int)System.Math.Floor((double)x / Size.X);
-                var xValue = x % Size.X;
+                return FillColor;
+            }
+            var v = p.ToVector2();
 
-                var p = new Point(xValue, yValue);
-                if (outerRectangles.Any(x => x.Contains(p)))
-                {
-                    return FillColor;
-                }
-                var v = p.ToVector2();
+            if (outerCircleCenters.Any(x => Vector2.Distance(x, v) <= CornerRadius))
+            {
+                return FillColor;
+            }
 
-                if (outerCircleCenters.Any(x => Vector2.Distance(x, v) <= CornerRadius))
-                {
-                    return FillColor;
-                }
-
-                return Color.Transparent;
-            };
+            return Color.Transparent;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 
 namespace Oscetch.MonoGame.Textures.Shapes
 {
@@ -22,42 +21,36 @@ namespace Oscetch.MonoGame.Textures.Shapes
             return (System.Math.Pow(normalized.X, 2) / System.Math.Pow(axis.X, 2) + System.Math.Pow(normalized.Y, 2) / System.Math.Pow(axis.Y, 2)) < 1;
         }
 
-        public override Func<int, Color> FunctionBordered()
+        public override Color Bordered(int index)
         {
             var halfSize = Size / new Point(2);
             var halfSizeBorder = (Size - new Point(BorderWidth * 2)) / new Point(2);
-            return x =>
+            var yValue = (int)System.Math.Floor((double)index / Size.X);
+            var xValue = index % Size.X;
+
+            var p = new Point(xValue, yValue);
+
+            if (IsInside(p, halfSize, halfSize))
             {
-                var yValue = (int)System.Math.Floor((double)x / Size.X);
-                var xValue = x % Size.X;
+                return IsInside(p, halfSize, halfSizeBorder) ? FillColor : BorderColor;
+            }
 
-                var p = new Point(xValue, yValue);
-
-                if (IsInside(p, halfSize, halfSize))
-                {
-                    return IsInside(p, halfSize, halfSizeBorder) ? FillColor : BorderColor;
-                }
-
-                return Color.Transparent;
-            };
+            return Color.Transparent;
         }
 
-        public override Func<int, Color> FunctionFilled()
+        public override Color Filled(int index)
         {
             var halfSize = Size / new Point(2);
-            return x =>
+            var yValue = (int)System.Math.Floor((double)index / Size.X);
+            var xValue = index % Size.X;
+
+            var p = new Point(xValue, yValue);
+            if (IsInside(p, halfSize, halfSize))
             {
-                var yValue = (int)System.Math.Floor((double)x / Size.X);
-                var xValue = x % Size.X;
+                return FillColor;
+            }
 
-                var p = new Point(xValue, yValue);
-                if (IsInside(p, halfSize, halfSize))
-                {
-                    return FillColor;
-                }
-
-                return Color.Transparent;
-            };
+            return Color.Transparent;
         }
     }
 }

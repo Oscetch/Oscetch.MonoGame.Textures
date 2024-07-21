@@ -9,8 +9,8 @@ namespace Oscetch.MonoGame.Textures.Shapes
         public Color BorderColor { get; protected set; }
         public Color FillColor { get; protected set; }
 
-        public abstract Func<int, Color> FunctionBordered();
+        public abstract Color Bordered(int index);
 
-        public abstract Func<int, Color> FunctionFilled();
+        public abstract Color Filled(int index);
     }
 }

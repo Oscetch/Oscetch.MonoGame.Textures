@@ -34,6 +34,11 @@ namespace TestTexture
             var fillColor = Color.White;
             var borderColor = Color.Violet;
 
+            var smallTriangleParams = new CustomTextureParametersBuilder().WithSize(50).WithBorderThickness(5).WithFillColor(fillColor).WithBorderColor(borderColor).WithShape(ShapeType.Triangle).Build();
+            var largeTriangleParams = new CustomTextureParametersBuilder().WithSize(300).WithBorderThickness(10).WithFillColor(fillColor).WithBorderColor(borderColor).WithShape(ShapeType.Triangle).Build();
+
+            _testGroups.Add((CustomTextureManager.GetCustomTexture(smallTriangleParams, GraphicsDevice), CustomTextureManager.GetCustomTexture(largeTriangleParams, GraphicsDevice)));
+
             var smallRectangleRoundedParams = new CustomTextureParametersBuilder().WithSize(50).WithBorderThickness(5).WithFillColor(fillColor).WithBorderColor(borderColor).WithCornerRadius(10).WithShape(ShapeType.RectangleCornerRadius).Build();
             var largeRectangleRoundedParams = new CustomTextureParametersBuilder().WithSize(300).WithBorderThickness(10).WithFillColor(fillColor).WithBorderColor(borderColor).WithCornerRadius(20).WithShape(ShapeType.RectangleCornerRadius).Build();
 
