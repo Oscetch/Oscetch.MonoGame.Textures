@@ -22,23 +22,23 @@ namespace Oscetch.MonoGame.Textures.Shapes
             FillColor = fillColor;
             BorderWidth = borderWidth;
             CornerRadius = System.Math.Max(1, cornerRadius);
-            _outerRectangles = new List<Rectangle>
-            {
+            _outerRectangles =
+            [
                 new (0, CornerRadius, Size.X, Size.Y - (CornerRadius * 2)), // horizontal
                 new (CornerRadius, 0, Size.X - (CornerRadius * 2), Size.Y), // vertical
-            };
-            _innerRectangles = new List<Rectangle>
-            {
+            ];
+            _innerRectangles =
+            [
                 new (CornerRadius, BorderWidth, Size.X - (CornerRadius + CornerRadius), Size.Y - BorderWidth - BorderWidth),
                 new (BorderWidth, CornerRadius, Size.X - BorderWidth - BorderWidth, Size.Y - CornerRadius - CornerRadius),
-            };
-            _outerCircleCenters = new List<Vector2>
-            {
+            ];
+            _outerCircleCenters =
+            [
                 new (CornerRadius, CornerRadius), // top left
                 new (CornerRadius, Size.Y - CornerRadius), // bottom left
                 new (Size.X - CornerRadius, CornerRadius), // top right
                 new (Size.X - CornerRadius, Size.Y - CornerRadius) // bottom right
-            };
+            ];
             _innerRadius = CornerRadius - BorderWidth;
         }
 

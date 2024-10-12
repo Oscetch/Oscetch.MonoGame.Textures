@@ -9,7 +9,7 @@ namespace Oscetch.MonoGame.Textures
     public static class CustomTextureManager
     {
         private readonly static Dictionary<CustomTextureParameters, CustomTexture> _textureCache
-            = new();
+            = [];
 
         public static CustomTexture GetCustomTexture(CustomTextureParameters parameters, GraphicsDevice graphicsDevice)
         {
