@@ -5,12 +5,12 @@
     <Authors>OscarH</Authors>
     <Description>A library for generating monogame textures</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.2.1105" />
-    <PackageReference Include="Oscetch.MonoGame.Math.DX" Version="1.0.2" />
+    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.4" />
+    <PackageReference Include="Oscetch.MonoGame.Math.DX" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
