@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Newtonsoft.Json;
 using Oscetch.MonoGame.Textures;
 using Oscetch.MonoGame.Textures.Enums;
 using System.Collections.Generic;
@@ -73,6 +74,9 @@ namespace TestTexture
             var largeXParams = new CustomTextureParametersBuilder().WithSize(300).WithBorderThickness(10).WithFillColor(fillColor).WithBorderColor(borderColor).WithShape(ShapeType.X).Build();
 
             _testGroups.Add((CustomTextureManager.GetCustomTexture(smallXParams, GraphicsDevice), CustomTextureManager.GetCustomTexture(largeXParams, GraphicsDevice)));
+
+            var serialized = JsonConvert.SerializeObject(smallXParams);
+            var deserialized = JsonConvert.DeserializeObject<CustomTextureParameters>(serialized);
         }
 
         protected override void LoadContent()

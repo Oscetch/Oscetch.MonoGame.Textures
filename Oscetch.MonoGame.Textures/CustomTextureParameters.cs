@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 using Oscetch.MonoGame.Textures.Enums;
 
 namespace Oscetch.MonoGame.Textures
@@ -13,15 +14,21 @@ namespace Oscetch.MonoGame.Textures
         public int BorderThickness { get; }
         public int CornerRadius { get; }
 
-        private CustomTextureParameters(CustomTextureParametersBuilder builder)
+        private CustomTextureParameters(CustomTextureParametersBuilder builder) 
+            : this(builder.ShapeType, builder.Size, builder.BorderColor, builder.FillColor, builder.IsBordered, builder.BorderThickness, builder.CornerRadius)
         {
-            Size = builder.Size;
-            IsBordered = builder.IsBordered;
-            BorderColor = builder.BorderColor;
-            FillColor = builder.FillColor;
-            BorderThickness = builder.BorderThickness;
-            ShapeType = builder.ShapeType;
-            CornerRadius = builder.CornerRadius;
+        }
+
+        [JsonConstructor]
+        private CustomTextureParameters(ShapeType shapeType, Point size, Color borderColor, Color fillColor, bool isBordered, int borderThickness, int cornerRadius)
+        {
+            ShapeType = shapeType;
+            Size = size;
+            BorderColor = borderColor;
+            FillColor = fillColor;
+            BorderThickness = borderThickness;
+            CornerRadius = cornerRadius;
+            IsBordered = isBordered;
         }
 
         public override bool Equals(object obj)
